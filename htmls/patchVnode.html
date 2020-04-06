@@ -1,0 +1,58 @@
+<div id="app"></div>
+
+<script src="../nodeOps.js"></script>
+<script src="../element.js"></script>
+<script src="../sameVnode.js"></script>
+<script src="../patchVnode.js"></script>
+<script>
+  var vnode = {
+    tag: 'ul',
+    children: [
+      {
+        tag: 'li',
+        text: 'child1'
+      },
+      {
+        tag: 'li',
+        text: 'child2'
+      }
+    ]
+  }
+  var parentElm = document.getElementById('app')
+  createElm(vnode, parentElm)
+
+  var oldVnode = vnode
+  vnode = {
+    tag: 'ul',
+    data: {
+      attrs: {
+        id: 'ul'
+      }
+    },
+    children: [
+      {
+        tag: 'li',
+        text: 'new child1 asdf'
+      },
+      {
+        tag: 'li',
+        text: 'new child2 asdf'
+      },
+      {
+        tag: 'li',
+        text: 'new child3 asdf'
+      },
+      {
+        tag: 'li',
+        text: 'new child4 asdf'
+      },
+      {
+        tag: 'li',
+        text: 'new child5 xxxx'
+      }
+    ]
+  }
+  function invokeUpdateHooks(oldVnode, vnode) {
+  }
+  patchVnode(oldVnode, vnode, invokeUpdateHooks)
+</script>
