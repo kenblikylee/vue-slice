@@ -1,0 +1,82 @@
+<div id="parent">
+  <div id="ref"></div>
+</div>
+
+<script src="../nodeOps.js"></script>
+<script src="../element.js"></script>
+<script>
+  var ulVnode = {
+    tag: 'ul',
+    children: [
+      {
+        tag: 'li',
+        text: 'child1'
+      },
+      {
+        tag: 'li',
+        text: 'child2'
+      }
+    ]
+  }
+  var tableVnode = {
+    tag: 'table',
+    data: {
+      attrs: {
+        border: 0
+      }
+    },
+    children: [
+      {
+        tag: 'tr',
+        children: [
+          {
+            tag: 'td',
+            text: 'td1'
+          },
+          {
+            tag: 'td',
+            text: 'td2'
+          },
+          {
+            tag: 'td',
+            text: 'td3'
+          }
+        ]
+      },
+      {
+        tag: 'tr',
+        children: [
+          {
+            tag: 'td',
+            text: 'td1'
+          },
+          {
+            tag: 'td',
+            text: 'td2'
+          },
+          {
+            tag: 'td',
+            text: 'td3'
+          }
+        ]
+      }
+    ]
+  }
+  var vnode = {
+    tag: 'div',
+    children: [
+      ulVnode,
+      tableVnode
+    ]
+  }
+  var parentElm = document.getElementById('parent')
+  var refElm = document.getElementById('ref')
+  var invokeCreateHooks = function(vnode) {
+    var elm = vnode.elm
+    var attrs = vnode.data.attrs || {}
+    for (key in attrs) {
+      elm.setAttribute(key, attrs[key])
+    }
+  }
+  createElm(vnode, parentElm, refElm, invokeCreateHooks)
+</script>
